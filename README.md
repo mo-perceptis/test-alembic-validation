@@ -20,11 +20,7 @@ cp .env.example .env
 createdb test_alembic
 ```
 
-4. Install pre-commit hooks:
-```bash
-pip install pre-commit
-pre-commit install
-```
+4. You're ready to test the GitHub workflow!
 
 ## Usage
 
@@ -58,23 +54,13 @@ poetry run alembic heads
 # Should show only one head for CI to pass
 ```
 
-### Test Pre-commit Hooks
+### Test the Local Workflow Simulation
 
-The pre-commit hooks will automatically run when you commit changes. You can also run them manually:
+You can test the GitHub workflow logic locally:
 
 ```bash
-pre-commit run --all-files
+./test-workflow.sh
 ```
-
-## Pre-commit Hooks
-
-This project includes several pre-commit hooks:
-
-1. **alembic-check**: Validates that all migrations can be applied
-2. **alembic-autogenerate-check**: Checks for pending migrations when models are changed
-3. **black**: Code formatting
-4. **isort**: Import sorting
-5. **Standard hooks**: trailing whitespace, YAML validation, etc.
 
 ## Project Structure
 

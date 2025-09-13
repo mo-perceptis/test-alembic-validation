@@ -11,30 +11,29 @@ jobs:
   alembic-check-heads:
     name: Alembic - Check for multiple heads
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-          
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"
-          
+
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
-          
+
       - name: Install dependencies
         run: |
           cd server
           poetry install --no-interaction --no-root
-          
+
       - name: Check Alembic heads
         run: |
           cd server
           n="$(poetry run alembic -c alembic.ini heads | grep -c "(head)")" || exit 2
           [ "$n" -eq 1 ] || { echo "Error: $n Alembic heads detected."; poetry run alembic -c alembic.ini heads; exit 1; }
-

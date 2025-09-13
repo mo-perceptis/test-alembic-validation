@@ -32,22 +32,30 @@ pre-commit install
 
 ```bash
 cd server
-python -m alembic revision --autogenerate -m "Initial migration"
+poetry run alembic revision --autogenerate -m "Initial migration"
 ```
 
 ### Apply Migrations
 
 ```bash
 cd server
-python -m alembic upgrade head
+poetry run alembic upgrade head
 ```
 
 ### Check Migration Status
 
 ```bash
 cd server
-python -m alembic current
-python -m alembic history
+poetry run alembic current
+poetry run alembic history
+```
+
+### Check for Multiple Heads (What the CI Tests)
+
+```bash
+cd server
+poetry run alembic heads
+# Should show only one head for CI to pass
 ```
 
 ### Test Pre-commit Hooks

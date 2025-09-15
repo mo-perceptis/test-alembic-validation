@@ -3,10 +3,7 @@ name: PR Validation
 on:
   pull_request:
     branches: [main]
-    paths:
-      - 'server/alembic/versions/**'
-  workflow_dispatch:  # Ading this line for manual testing
-
+    
 jobs:
   alembic-check-heads:
     name: Alembic - Check for multiple heads
